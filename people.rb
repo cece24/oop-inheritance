@@ -4,12 +4,16 @@ class Person
     @name = name
   end
 
+  def greeting
+    puts "Hi, my name is #{ @name }!"
+  end
+
 end
 
 class Student < Person
 
   def learn
-    "I get it!"
+    puts "I get it!"
   end
 
 end
@@ -17,7 +21,7 @@ end
 class Instructor < Person
 
   def teach
-    "Everything in Ruby is an Object"
+    puts "Everything in Ruby is an Object"
   end
 
 end
@@ -25,5 +29,22 @@ end
 morty = Student.new("Morty")
 rick = Instructor.new("Rick")
 
-puts rick.teach
-puts morty.learn
+rick.teach
+morty.learn
+
+rick.greeting
+morty.greeting
+
+nadia = Instructor.new("Nadia")
+nadia.greeting
+
+chris = Student.new("Chris")
+chris.greeting
+
+nadia.teach
+chris.learn
+# chris.teach <= this does not work because .teach is a method
+# defined for instructors, not for students
+# instructors and students are separate classes and do not inherit
+# anything from each other
+# if Person has a method called teach, then this would work
