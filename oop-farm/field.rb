@@ -13,9 +13,10 @@ class Field
     return new_field
   end
 
-  def self.harvest_field
-    @@fields.each do |fields|
-      @@total_harvest += fields.food_produced
+  def self.harvest_fields
+    @@fields.each do |field|
+      @@total_harvest += field.food_produced
+      puts "Harvesting #{ field.food_produced } from #{ field.size } hectare #{ field.type } field."
     end
   end
 

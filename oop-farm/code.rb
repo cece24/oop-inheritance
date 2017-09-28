@@ -24,20 +24,37 @@ class FarmApp
   def call_option(user_selection)
     case user_selection
     when "field" then add_field
+    when "harvest" then harvest_farm
     when "status" then farm_status
     when "exit" then exit
     end
   end
 
   def add_field
-    puts "What kind of field is it: corn or wheat?"
-    field_type = gets.chomp
+    valid_field = false
+
+    while valid_field == false
+      puts "What kind of field is it: corn or wheat?"
+      field_type = gets.chomp
+
+      if field_type == "corn" || field_type == "wheat"
+        valid_field = true
+      else
+        puts "Invalid field type, please try again!"
+      end
+    end
 
     puts "How large is the field in hectares?"
     field_size = gets.to_i
 
     new_field = Field.create(field_type, field_size)
     puts "Added a #{ field_type } field of #{ field_size } hectares!"
+  end
+
+  def harvest_farm
+    Field.harvest_fields
+
+    puts "The farm has #{ Field.total_harvest } harvested food so far."
   end
 
   def farm_status
