@@ -39,17 +39,17 @@ class Body
 
 end
 
-new_body = Body.new("Earth", 1.5)
-another_body = Body.new("Mars", 2)
-
-puts new_body.inspect
-puts another_body.inspect
-
-System.add(new_body)
-System.add(another_body)
-
-puts System.bodies.inspect
-puts "Total mass is #{ System.total_mass }"
+# new_body = Body.new("Earth", 1.5)
+# another_body = Body.new("Mars", 2)
+#
+# puts new_body.inspect
+# puts another_body.inspect
+#
+# System.add(new_body)
+# System.add(another_body)
+#
+# puts System.bodies.inspect
+# puts "Total mass is #{ System.total_mass }"
 
 
 class Planet < Body
@@ -82,3 +82,13 @@ class Moon < Body
   end
 
 end
+
+sun = Star.new("Sun", 16, "G-type")
+earth = Planet.new("Earth", 5, 365, 5)
+moon = Moon.new("Earth's Moon", 0.4, 5, earth)
+
+System.add(sun)
+System.add(earth)
+System.add(moon)
+
+puts "Total mass is : #{ System.total_mass }"
