@@ -1,6 +1,4 @@
 require_relative "field"
-require_relative "corn"
-require_relative "wheat"
 
 class FarmApp
 
@@ -26,6 +24,7 @@ class FarmApp
     when "field" then add_field
     when "harvest" then harvest_farm
     when "status" then farm_status
+    when "relax" then relax_on_farm
     when "exit" then exit
     end
   end
@@ -64,6 +63,14 @@ class FarmApp
     end
     # puts total food produced by farm
     puts "The farm has #{ Field.total_harvest } harvested food so far."
+  ends
+
+  def relax_on_farm
+    corn_total_hectares = Field.total_hectares("corn")
+    wheat_total_hectares = Field.total_hectares("wheat")
+
+    puts "#{ corn_total_hectares } hectares of tall green stalks rustling in the breeze fill your horizon."
+    puts "The sun hangs low, casting an orange flow on a sea of #{ wheat_total_hectares } hectares of wheat."
   end
 
 end

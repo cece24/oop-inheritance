@@ -33,6 +33,16 @@ class Field
     return food_produced
   end
 
+  def self.total_hectares(type)
+    total = 0
+    @@fields.each do |field|
+      if field.type == type
+        total += field.size
+      end
+    end
+    return total
+  end
+
   def self.all
     @@fields
   end
