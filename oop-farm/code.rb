@@ -1,4 +1,3 @@
-require_relative "farm"
 require_relative "field"
 require_relative "corn"
 require_relative "wheat"
@@ -6,9 +5,11 @@ require_relative "wheat"
 class FarmApp
 
   def main_menu
-    print_main_menu
-    user_selection = gets.chomp
-    call_option(user_selection)
+    while true
+      print_main_menu
+      user_selection = gets.chomp
+      call_option(user_selection)
+    end
   end
 
   def print_main_menu
@@ -23,7 +24,9 @@ class FarmApp
   def call_option(user_selection)
     case user_selection
     when "field" then add_field
+    when "status" then farm_status
     when "exit" then exit
+    end
   end
 
   def add_field
@@ -36,6 +39,16 @@ class FarmApp
     new_field = Field.create(field_type, field_size)
     puts "Added a #{ field_type } field of #{ field_size } hectares!"
   end
+
+  def farm_status
+    # lists all the fields
+    Field.all.each do |field|
+      puts "#{ field.type } field is #{ field.size } hectares."
+    end
+    # puts total food produced by farm
+    puts "The farm has #{ Field.total_harvest } harvested food so far."
+  end
+
 end
 
 new_app = FarmApp.new
@@ -60,4 +73,3 @@ new_app.main_menu
 
 # harvest - total food produced across all fields
 # could be a Field class variable or method
-#

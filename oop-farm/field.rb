@@ -1,5 +1,6 @@
 class Field
   @@fields = []
+  @@total_harvest = 0
 
   def initialize(type, size)
     @type = type
@@ -10,6 +11,37 @@ class Field
     new_field = Field.new(type, size)
     @@fields <<  new_field
     return new_field
+  end
+
+  def self.harvest_field
+    @@fields.each do |fields|
+      @@total_harvest += fields.food_produced
+    end
+  end
+
+  def self.total_harvest
+    @@total_harvest
+  end
+
+  def food_produced
+    if self.type == "corn"
+      food_produced = @size * 20
+    else
+      food_produced = @size * 30
+    end
+    return food_produced
+  end
+
+  def self.all
+    @@fields
+  end
+
+  def type
+    @type
+  end
+
+  def size
+    @size
   end
 
 end
