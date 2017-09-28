@@ -10,13 +10,13 @@ class System
   end
 
   def self.total_mass
-    sum = 0
-    @@bodies.each do |body|
-      sum += body.mass
-    end
-    return sum
+    # sum = 0
+    # @@bodies.each do |body|
+    #   sum += body.mass
+    # end
+    # return sum
 
-    # sum = @@bodies.reduce { |total, body| total + body.mass }
+    sum = @@bodies.reduce(0) { |total, body| total + body.mass }
   end
 
 end
